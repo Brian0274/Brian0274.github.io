@@ -254,6 +254,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Internationaler Katzentag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Internationaler_Frauentag@intdays2025
 SUMMARY:[INTDAY2025] Internationaler Frauentag
@@ -266,6 +267,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Internationaler Frauentag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Weltkrebstag@intdays2025
 SUMMARY:[INTDAY2025] Weltkrebstag
@@ -278,6 +280,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Weltkrebstag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Welttag_des_Lächelns@intdays2025
 SUMMARY:[INTDAY2025] Welttag des Lächelns
@@ -290,6 +293,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Welttag des Lächelns ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Internationaler_Tag_der_Freundschaft@intdays2025
 SUMMARY:[INTDAY2025] Internationaler Tag der Freundschaft
@@ -302,6 +306,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Internationaler Tag der Freundschaft ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Tag_der_Erde@intdays2025
 SUMMARY:[INTDAY2025] Tag der Erde
@@ -314,6 +319,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Tag der Erde ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Weltkindertag@intdays2025
 SUMMARY:[INTDAY2025] Weltkindertag
@@ -326,6 +332,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Weltkindertag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Internationaler_Tag_der_Menschenrechte@intdays2025
 SUMMARY:[INTDAY2025] Internationaler Tag der Menschenrechte
@@ -338,6 +345,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Internationaler Tag der Menschenrechte ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Welt-Emoji-Tag@intdays2025
 SUMMARY:[INTDAY2025] Welt-Emoji-Tag
@@ -350,6 +358,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Welt-Emoji-Tag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Weltgesundheitstag@intdays2025
 SUMMARY:[INTDAY2025] Weltgesundheitstag
@@ -362,6 +371,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Weltgesundheitstag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Tag_des_Kaffees@intdays2025
 SUMMARY:[INTDAY2025] Tag des Kaffees
@@ -374,6 +384,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Tag des Kaffees ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Internationaler_Tag_des_Glücks@intdays2025
 SUMMARY:[INTDAY2025] Internationaler Tag des Glücks
@@ -386,6 +397,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Internationaler Tag des Glücks ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Tag_der_Wissenschaft_für_Frieden_und_Entwicklung@intdays2025
 SUMMARY:[INTDAY2025] Tag der Wissenschaft für Frieden und Entwicklung
@@ -398,6 +410,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Tag der Wissenschaft für Frieden und Entwicklung ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Welt-Nutella-Tag@intdays2025
 SUMMARY:[INTDAY2025] Welt-Nutella-Tag
@@ -410,6 +423,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Welt-Nutella-Tag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Weltlachtag@intdays2025
 SUMMARY:[INTDAY2025] Weltlachtag
@@ -422,6 +436,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Weltlachtag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Tag_der_sozialen_Gerechtigkeit@intdays2025
 SUMMARY:[INTDAY2025] Tag der sozialen Gerechtigkeit
@@ -434,6 +449,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Tag der sozialen Gerechtigkeit ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Weltumwelttag@intdays2025
 SUMMARY:[INTDAY2025] Weltumwelttag
@@ -446,6 +462,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Weltumwelttag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Weltfahrradtag@intdays2025
 SUMMARY:[INTDAY2025] Weltfahrradtag
@@ -458,6 +475,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Weltfahrradtag ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Tag_der_Schiene@intdays2025
 SUMMARY:[INTDAY2025] Tag der Schiene
@@ -470,6 +488,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Tag der Schiene ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Tag_der_Museumsbahnen@intdays2025
 SUMMARY:[INTDAY2025] Tag der Museumsbahnen
@@ -482,6 +501,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Tag der Museumsbahnen ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:200_Jahre_Eisenbahn_in_Europa@intdays2025
 SUMMARY:[INTDAY2025] 200 Jahre Eisenbahn in Europa
@@ -494,6 +514,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: 200 Jahre Eisenbahn in Europa ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:Internationaler_Tag_der_Modelleisenbahn@intdays2025
 SUMMARY:[INTDAY2025] Internationaler Tag der Modelleisenbahn
@@ -506,6 +527,7 @@ ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Internationaler Tag der Modelleisenbahn ist in einer Woche!
 END:VALARM
 END:VEVENT
+
 BEGIN:VEVENT
 UID:National_Train_Day_(USA)@intdays2025
 SUMMARY:[INTDAY2025] National Train Day (USA)

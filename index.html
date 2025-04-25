@@ -13,16 +13,6 @@
   </style>
 </head>
 <body>
-  <!--
-    Bitte lege deine eigenen Bilder im Ordner `images/` im Root des Repos ab.
-    Beispielstruktur:
-    ├─ index.html
-    ├─ InternationalDays2025_Kombiniert.ics
-    └─ images/
-       ├─ beer.jpg
-       ├─ unity.jpg
-       └─ default.jpg (Fallback-Bild)
-  -->
   <h1>Feiertagskalender 2025</h1>
   <p>Abonnierbare ICS-Datei: <a href="InternationalDays2025_Kombiniert.ics">Download</a></p>
   <div class="grid" id="events"></div>
@@ -37,19 +27,13 @@
       const comp = new ICAL.Component(jcal);
       const vevents = comp.getAllSubcomponents('vevent');
 
-      // Benutzerdefinierte Bilder (lokal im images-Ordner)
-      // Falls du keine Bilder direkt hochladen kannst, nutze externe URLs oder Data-URIs
-      // Beispiel Data-URI (Base64): 'data:image/png;base64,iVBORw0KGgoAAAANS...'
-      // Oder hoste Bilder auf einem CDN und verwende die URL
+      // Benutzerdefinierte Bilder: Schlüssel ist genau der Event-Name
+      // Die URL muss direkt auf die Bilddatei zeigen (.jpg, .png), nicht auf eine Host-Seite
       const customImages = {
         'Internationaler Tag des Bieres': 'images/beer.jpg',
         'Tag der Deutschen Einheit': 'images/unity.jpg',
-        // weitere eigene Bilder hinzufügen...
+        'Welt-Arschbohrertag': 'https://i.ibb.co/q35HrPnD/arschbohrertag.jpg' // direkter Bild-Link
       };
-      // Beispiel mit Data-URI:
-      // customImages['Internationaler Tag des Bieres'] = 'data:image/png;base64,...';
-      // Oder mit externer URL:
-      // customImages['Tag der Deutschen Einheit'] = 'https://raw.githubusercontent.com/username/repo/branch/images/unity.jpg';
       const defaultImage = 'images/default.jpg';
 
       const container = document.getElementById('events');
@@ -57,6 +41,9 @@
         const summary = ev.getFirstPropertyValue('summary');
         const name = summary.replace(/\[.*?\]/, '').trim();
         const keyword = encodeURIComponent(name.split(/\s+/)[0]);
+
+        // Debugging
+        console.log('Event:', name);
 
         // Bildauswahl: zuerst custom, dann Unsplash, sonst default
         let imgUrl;
@@ -67,6 +54,7 @@
         } else {
           imgUrl = defaultImage;
         }
+        console.log('Image URL:', imgUrl);
 
         const card = document.createElement('div');
         card.className = 'card';
@@ -83,4 +71,3 @@
   </script>
 </body>
 </html>
-

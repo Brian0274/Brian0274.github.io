@@ -17,55 +17,57 @@
   <p>Abonnierbare ICS-Datei: <a href="InternationalDays2025_Kombiniert.ics">Download</a></p>
   <div class="grid" id="events"></div>
 
-  <!-- ical.js laden -->
+  <!-- Achtung: Beim Testen lokal (file://) schlägt fetch fehl. Nutze einen lokalen HTTP-Server bzw. GitHub Pages -->
   <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
   <script>
     async function loadCalendar() {
-      const res = await fetch('InternationalDays2025_Kombiniert.ics');
-      const text = await res.text();
-      const jcal = ICAL.parse(text);
-      const comp = new ICAL.Component(jcal);
-      const vevents = comp.getAllSubcomponents('vevent');
+      try {
+        const res = await fetch('InternationalDays2025_Kombiniert.ics');
+        if (!res.ok) throw new Error(`Calendar fetch error: ${res.status}`);
+        const text = await res.text();
+        const jcal = ICAL.parse(text);
+        const comp = new ICAL.Component(jcal);
+        const vevents = comp.getAllSubcomponents('vevent');
 
-      // Benutzerdefinierte Bilder: Schlüssel ist nun die UID des Events
-      const customImages = {
-        'Internationaler_Tag_des_Bieres@intdays2025': 'images/beer.jpg',
-        'Tag_der_Deutschen_Einheit@intdays2025': 'images/unity.jpg',
-        'Welt-Arschbohrertag@intdays2025': 'https://i.ibb.co/q35HrPnD/arschbohrertag.jpg'
-      };
-      const defaultImage = 'images/default.jpg';
+        // customImages: Schlüssel = UID aus .ics
+        const customImages = {
+          'Internationaler_Tag_des_Bieres@intdays2025': 'https://i.ibb.co/your-path/beer.jpg',
+          'Tag_der_Deutschen_Einheit@intdays2025': 'https://i.ibb.co/your-path/unity.jpg',
+          'Welt-Arschbohrertag@intdays2025': 'https://i.ibb.co/q35HrPnD/arschbohrertag.jpg'
+        };
+        const defaultImage = 'https://via.placeholder.com/400x300?text=Kein+Bild';
 
-      const container = document.getElementById('events');
-      vevents.forEach(ev => {
-        const uid = ev.getFirstPropertyValue('uid');
-        const summary = ev.getFirstPropertyValue('summary');
-        const name = summary.replace(/\[.*?\]/, '').trim();
-        const keyword = encodeURIComponent(name.split(/\s+/)[0]);
+        const container = document.getElementById('events');
+        vevents.forEach(ev => {
+          const uid = ev.getFirstPropertyValue('uid');
+          const summary = ev.getFirstPropertyValue('summary');
+          const name = summary.replace(/\[.*?\]/, '').trim();
+          const keyword = encodeURIComponent(name.split(/\s+/)[0]);
 
-        console.log('Event UID:', uid);
-        console.log('Event Name:', name);
+          console.log('Event UID:', uid);
+          console.log('Image key present:', uid in customImages);
 
-        // Bildauswahl: zuerst custom nach UID, dann Unsplash, sonst default
-        let imgUrl;
-        if (customImages[uid]) {
-          imgUrl = customImages[uid];
-        } else if (keyword) {
-          imgUrl = `https://source.unsplash.com/400x300/?${keyword}`;
-        } else {
-          imgUrl = defaultImage;
-        }
-        console.log('Image URL:', imgUrl);
+          let imgUrl;
+          if (customImages[uid]) {
+            imgUrl = customImages[uid];
+          } else {
+            imgUrl = `https://source.unsplash.com/400x300/?${keyword}`;
+          }
+          console.log('Image URL:', imgUrl);
 
-        const card = document.createElement('div');
-        card.className = 'card';
-        const img = document.createElement('img');
-        img.src = imgUrl;
-        img.alt = name;
-        const h2 = document.createElement('h2');
-        h2.textContent = name;
-        card.append(img, h2);
-        container.appendChild(card);
-      });
+          const card = document.createElement('div');
+          card.className = 'card';
+          const img = document.createElement('img');
+          img.src = imgUrl;
+          img.alt = name;
+          const h2 = document.createElement('h2');
+          h2.textContent = name;
+          card.append(img, h2);
+          container.appendChild(card);
+        });
+      } catch (e) {
+        console.error('Fehler beim Laden des Kalenders oder der Bilder:', e);
+      }
     }
     loadCalendar();
   </script>

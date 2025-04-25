@@ -14,7 +14,7 @@
 </head>
 <body>
   <h1>Feiertagskalender 2025</h1>
-  <p>Abonnierbare ICS-Datei: <a href="InternationalDays2025_Kombiniert.ics">Download</a></p>
+  <p>Abonnierbare ICS-Datei: <a href="InternationalDays2025_Full.ics">Download</a></p>
   <div class="grid" id="events"></div>
 
   <!-- Achtung: Beim Testen lokal (file://) schlägt fetch fehl. Nutze einen lokalen HTTP-Server bzw. GitHub Pages -->
@@ -22,7 +22,7 @@
   <script>
     async function loadCalendar() {
       try {
-        const res = await fetch('InternationalDays2025_Kombiniert.ics');
+        const res = await fetch('InternationalDays2025_Full.ics');
         if (!res.ok) throw new Error(`Calendar fetch error: ${res.status}`);
         const text = await res.text();
         const jcal = ICAL.parse(text);
@@ -66,6 +66,7 @@
           container.appendChild(card);
         });
       } catch (e) {
+        console.error('Fehler beim Laden des Kalenders oder der Bilder:', e);
       }
     }
     loadCalendar();

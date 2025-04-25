@@ -2,10 +2,67 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>International Days 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feiertagskalender 2025</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 20px; }
+    .card { border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card img { width: 100%; height: 150px; object-fit: cover; }
+    .card h2 { font-size: 1em; margin: 10px; }
+  </style>
 </head>
 <body>
-  <h1>International Days Kalender 2025</h1>
-  <p><a href="InternationalDays2025_Full.ics">ICS-Datei hier abrufen</a></p>
+  <h1>Feiertagskalender 2025</h1>
+  <p>Abonnierbare ICS-Datei: <a href="InternationalDays2025_Kombiniert.ics">Download</a></p>
+  <div class="grid" id="events"></div>
+
+  <!-- ical.js laden -->
+  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
+  <script>
+    async function loadCalendar() {
+      const res = await fetch('InternationalDays2025_Kombiniert.ics');
+      const text = await res.text();
+      const jcal = ICAL.parse(text);
+      const comp = new ICAL.Component(jcal);
+      const vevents = comp.getAllSubcomponents('vevent');
+
+      // Benutzerdefinierte Bilder (lokal im images-Ordner)
+      const customImages = {
+        'Internationaler Tag des Bieres': 'images/beer.jpg',
+        'Tag der Deutschen Einheit': 'images/unity.jpg',
+        // weitere eigene Bilder hinzufügen...
+      };
+      const defaultImage = 'images/default.jpg';
+
+      const container = document.getElementById('events');
+      vevents.forEach(ev => {
+        const summary = ev.getFirstPropertyValue('summary');
+        const name = summary.replace(/\[.*?\]/, '').trim();
+        const keyword = encodeURIComponent(name.split(/\s+/)[0]);
+
+        // Bildauswahl: zuerst custom, dann Unsplash, sonst default
+        let imgUrl;
+        if (customImages[name]) {
+          imgUrl = customImages[name];
+        } else if (keyword) {
+          imgUrl = `https://source.unsplash.com/400x300/?${keyword}`;
+        } else {
+          imgUrl = defaultImage;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        const img = document.createElement('img');
+        img.src = imgUrl;
+        img.alt = name;
+        const h2 = document.createElement('h2');
+        h2.textContent = name;
+        card.append(img, h2);
+        container.appendChild(card);
+      });
+    }
+    loadCalendar();
+  </script>
 </body>
 </html>

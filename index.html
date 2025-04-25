@@ -27,28 +27,28 @@
       const comp = new ICAL.Component(jcal);
       const vevents = comp.getAllSubcomponents('vevent');
 
-      // Benutzerdefinierte Bilder: Schlüssel ist genau der Event-Name
-      // Die URL muss direkt auf die Bilddatei zeigen (.jpg, .png), nicht auf eine Host-Seite
+      // Benutzerdefinierte Bilder: Schlüssel ist nun die UID des Events
       const customImages = {
-        'Internationaler Tag des Bieres': 'images/beer.jpg',
-        'Tag der Deutschen Einheit': 'images/unity.jpg',
-        'Welt-Arschbohrertag': 'https://i.ibb.co/q35HrPnD/arschbohrertag.jpg' // direkter Bild-Link
+        'Internationaler_Tag_des_Bieres@intdays2025': 'images/beer.jpg',
+        'Tag_der_Deutschen_Einheit@intdays2025': 'images/unity.jpg',
+        'Welt-Arschbohrertag@intdays2025': 'https://i.ibb.co/q35HrPnD/arschbohrertag.jpg'
       };
       const defaultImage = 'images/default.jpg';
 
       const container = document.getElementById('events');
       vevents.forEach(ev => {
+        const uid = ev.getFirstPropertyValue('uid');
         const summary = ev.getFirstPropertyValue('summary');
         const name = summary.replace(/\[.*?\]/, '').trim();
         const keyword = encodeURIComponent(name.split(/\s+/)[0]);
 
-        // Debugging
-        console.log('Event:', name);
+        console.log('Event UID:', uid);
+        console.log('Event Name:', name);
 
-        // Bildauswahl: zuerst custom, dann Unsplash, sonst default
+        // Bildauswahl: zuerst custom nach UID, dann Unsplash, sonst default
         let imgUrl;
-        if (customImages[name]) {
-          imgUrl = customImages[name];
+        if (customImages[uid]) {
+          imgUrl = customImages[uid];
         } else if (keyword) {
           imgUrl = `https://source.unsplash.com/400x300/?${keyword}`;
         } else {

@@ -35,6 +35,20 @@ DESCRIPTION:Erinnerung: Internationaler Tag des Bieres ist in einer Woche!
 END:VALARM
 END:VEVENT
 
+#Test Event
+BEGIN:VEVENT
+UID:Welt-Arschbohrertag@intdays2025
+SUMMARY:[INTDAY2025] Arschbohrer
+DTSTART;VALUE=DATE:202504025
+DTEND;VALUE=DATE:20250425
+DESCRIPTION=Internationaler Aktionstag
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:Erinnerung: Welt-Pizzatag ist in einer Woche!
+END:VALARM
+END:VEVENT
+
 #Neues Event
 BEGIN:VEVENT
 UID:Welt-Pizzatag@intdays2025

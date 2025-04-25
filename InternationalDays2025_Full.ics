@@ -1,41 +1,41 @@
-//Beginn des Calender
+#Beginn des Calender
 BEGIN:VCALENDAR 
 
 VERSION:2.0
 CALSCALE:GREGORIAN
 PRODID:-//Custom Intl Days Full//EN
 
-//Beginn Event
+#Beginn Event
 BEGIN:VEVENT
 
 #EventID
 UID:Internationaler_Tag_des_Bieres@intdays2025  
 
-//Anzeigename
+#Anzeigename
 SUMMARY:[INTDAY2025] Internationaler Tag des Bieres
 
-//Zeitpunkt des Event YYYYMMDD
+#Zeitpunkt des Event YYYYMMDD
 DTSTART;VALUE=DATE:20250801
 DTEND;VALUE=DATE:20250802
 
-//Kategorisierung
+#Kategorisierung
 DESCRIPTION=Internationaler Aktionstag
 
-//Beginn der/einer Erinnerung 
+#Beginn der/einer Erinnerung 
 BEGIN:VALARM
 
-//Zeitpunkt der Erinnerung -P(X)D x=Tage
+#Zeitpunkt der Erinnerung -P(X)D x=Tage
 TRIGGER:-P7D
 
-//Welche Ausführung und was wird angezeigt ? 
+#Welche Ausführung und was wird angezeigt ? 
 ACTION:DISPLAY
 DESCRIPTION:Erinnerung: Internationaler Tag des Bieres ist in einer Woche!
 
-//Ende der Erinnerung u. Events 
+#Ende der Erinnerung u. Events 
 END:VALARM
 END:VEVENT
 
-//Neues Event
+#Neues Event
 BEGIN:VEVENT
 UID:Welt-Pizzatag@intdays2025
 SUMMARY:[INTDAY2025] Welt-Pizzatag

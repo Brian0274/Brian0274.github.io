@@ -30,7 +30,10 @@
         const cleanedText = cleanedLines.join('\r\n');
         // Global: ersetze 'PROPERTY=...' zu 'PROPERTY:...'
         const fixedText = cleanedText.replace(/^([^:;\r\n]+)=/gm, '$1:');
-        const jcal = ICAL.parse(fixedText);
+        // Stelle sicher, dass das ICS mit einem abschließenden CRLF endet
+        let parseText = fixedText;
+        if (!parseText.endsWith('\r\n')) parseText += '\r\n';
+        const jcal = ICAL.parse(parseText);
         const comp = new ICAL.Component(jcal);
         const vevents = comp.getAllSubcomponents('vevent');
 

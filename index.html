@@ -28,7 +28,9 @@
         // Kommentare entfernen, damit ical.js validiert
         const cleanedLines = text.split(/\r?\n/).filter(line => !line.startsWith('#'));
         const cleanedText = cleanedLines.join('\r\n');
-        const jcal = ICAL.parse(cleanedText);
+        // Fix DESCRIPTION fields to use colon separator
+        const fixedText = cleanedText.replace(/^DESCRIPTION=(.*)$/gm, 'DESCRIPTION:$1');
+        const jcal = ICAL.parse(fixedText);
         const comp = new ICAL.Component(jcal);
         const vevents = comp.getAllSubcomponents('vevent');
 

@@ -17,7 +17,7 @@
   <p>Abonnierbare ICS-Datei: <a href="InternationalDays2025_Full.ics">Download</a></p>
   <div class="grid" id="events"></div>
 
-  <!-- Achtung: Beim Testen lokal (file://) schlägt fetch fehl. Nutze einen lokalen HTTP-Server bzw. GitHub Pages -->
+  <!-- Hinweis: Fetch funktioniert nur über HTTP/S, nicht file:// -->
   <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
   <script>
     async function loadCalendar() {
@@ -25,19 +25,33 @@
         const res = await fetch('InternationalDays2025_Full.ics');
         if (!res.ok) throw new Error(`Calendar fetch error: ${res.status}`);
         const text = await res.text();
-        // Entferne Kommentare und leere Zeilen für valide ICS
-        const cleanedLines = text.split(/\r?\n/).filter(line => line.trim() !== '' && !line.startsWith('#'));
-        const cleanedText = cleanedLines.join('\r\n');
-        // Global: ersetze 'PROPERTY=...' zu 'PROPERTY:...'
-        const fixedText = cleanedText.replace(/^([^:;\r\n]+)=/gm, '$1:');
-        // Stelle sicher, dass das ICS mit einem abschließenden CRLF endet
-        let parseText = fixedText;
-        if (!parseText.endsWith('\r\n')) parseText += '\r\n';
-        const jcal = ICAL.parse(parseText);
+
+        // 1) Entferne Kommentar- und leere Zeilen
+        const lines = text.split(/\r?\n/).filter(l => l.trim() && !l.startsWith('#'));
+        // 2) Unfold: Zeilen, die mit SP/Tab beginnen, sollen an Vorzeile angehängt werden
+        const unfolded = [];
+        lines.forEach(line => {
+          if (/^[ \t]/.test(line) && unfolded.length) {
+            unfolded[unfolded.length - 1] += line.trim();
+          } else {
+            unfolded.push(line);
+          }
+        });
+        let cleanedText = unfolded.join('\r\n');
+        // 3) Ersetze alle Property=Value auf Property:Value
+        cleanedText = cleanedText.replace(/^([^:;\r\n]+)=/gm, '$1:');
+        // 4) Stelle sicher, dass Kalender richtig endet
+        if (!/END:VCALENDAR$/.test(cleanedText)) {
+          cleanedText += '\r\nEND:VCALENDAR';
+        }
+        console.log('Cleaned ICS Text:', cleanedText);
+
+        // Parse mit ical.js
+        const jcal = ICAL.parse(cleanedText);
         const comp = new ICAL.Component(jcal);
         const vevents = comp.getAllSubcomponents('vevent');
 
-        // customImages: Schlüssel = UID aus .ics
+        // eigene Bilder per UID
         const customImages = {
           'Internationaler_Tag_des_Bieres@intdays2025': 'https://i.ibb.co/your-path/beer.jpg',
           'Tag_der_Deutschen_Einheit@intdays2025': 'https://i.ibb.co/your-path/unity.jpg',
@@ -51,18 +65,7 @@
           const summary = ev.getFirstPropertyValue('summary');
           const name = summary.replace(/\[.*?\]/, '').trim();
           const keyword = encodeURIComponent(name.split(/\s+/)[0]);
-
-          console.log('Event UID:', uid);
-          console.log('Image key present:', uid in customImages);
-
-          let imgUrl;
-          if (customImages[uid]) {
-            imgUrl = customImages[uid];
-          } else {
-            imgUrl = `https://source.unsplash.com/400x300/?${keyword}`;
-          }
-          console.log('Image URL:', imgUrl);
-
+          let imgUrl = customImages[uid] || `https://source.unsplash.com/400x300/?${keyword}` || defaultImage;
           const card = document.createElement('div');
           card.className = 'card';
           const img = document.createElement('img');

@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+  <!--
+    Hinweis: Um den Fehler "Response should include 'x-content-type-options' header" zu beheben,
+    muss der Server (z.B. GitHub Pages) den Header X-Content-Type-Options: nosniff setzen.
+    GitHub Pages unterstützt das nicht direkt.
+    Lösungen:
+    1. Verwende einen HTTP-Server oder CDN (z.B. Netlify, Cloudflare) und konfiguriere:
+       /*
+         X-Content-Type-Options: nosniff
+       */
+    2. Hoste über einen eigenen Server, der den Header für .html und .ics ausliefert.
+    Ohne diesen Header kann der Browser die Datei u.U. ablehnen.
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feiertagskalender 2025</title>
@@ -22,7 +34,7 @@
   <script>
     async function loadCalendar() {
       try {
-        const res = await fetch('InternationalDays2025_Full.ics');
+        const res = await fetch('InternationalDays2025_Kombiniert.ics');
         if (!res.ok) throw new Error(`Calendar fetch error: ${res.status}`);
         const text = await res.text();
         // Kommentare entfernen, damit ical.js validiert

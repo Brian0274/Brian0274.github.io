@@ -65,12 +65,13 @@
           const summary = ev.getFirstPropertyValue('summary');
           const name = summary.replace(/\[.*?\]/, '').trim();
           const keyword = encodeURIComponent(name.split(/\s+/)[0]);
-          let imgUrl = customImages[uid] || `https://source.unsplash.com/400x300/?${keyword}` || defaultImage;
+          const imgUrl = customImages[uid] || `https://source.unsplash.com/400x300/?${keyword}`;
           const card = document.createElement('div');
           card.className = 'card';
           const img = document.createElement('img');
           img.src = imgUrl;
           img.alt = name;
+          img.onerror = () => { img.src = defaultImage; };
           const h2 = document.createElement('h2');
           h2.textContent = name;
           card.append(img, h2);
